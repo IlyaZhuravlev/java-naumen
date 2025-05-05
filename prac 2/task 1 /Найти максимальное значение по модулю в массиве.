@@ -1,0 +1,82 @@
+import java.util.Random;
+import java.util.Scanner;
+
+public class ArrayTasks {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Введите количество элементов в массиве (n >= 0): ");
+        int n = scanner.nextInt();
+        
+        if (n <= 0) {
+            System.out.println("Массив пуст. Завершение программы.");
+            return;
+        }
+        
+        int[] array = new int[n];
+        Random random = new Random();
+        
+         
+        for (int i = 0; i < n; i++) {
+            array[i] = random.nextInt(200) - 100; // числа от -100 до 100
+        }
+        
+       
+        System.out.print("Массив: [");
+        for (int i = 0; i < n; i++) {
+            System.out.print(array[i]);
+            if (i < n - 1) {
+                System.out.print(", ");
+            }
+        }
+        System.out.println("]");
+        
+        
+        int maxAbs = Math.abs(array[0]);
+        for (int num : array) {
+            if (Math.abs(num) > maxAbs) {
+                maxAbs = Math.abs(num);
+            }
+        }
+        System.out.println("1. Максимальное значение по модулю: " + maxAbs);
+        
+        
+        int minAbs = Math.abs(array[0]);
+        for (int num : array) {
+            if (Math.abs(num) < minAbs) {
+                minAbs = Math.abs(num);
+            }
+        }
+        System.out.println("2. Минимальное значение по модулю: " + minAbs);
+        
+        
+        double sum = 0;
+        for (int num : array) {
+            sum += num;
+        }
+        double average = sum / n;
+        System.out.println("3. Среднее значение элементов: " + average);
+        
+        
+        int lastPositive = -1;
+        for (int i = n - 1; i >= 0; i--) {
+            if (array[i] > 0) {
+                lastPositive = array[i];
+                break;
+            }
+        }
+        if (lastPositive != -1) {
+            System.out.println("4. Последний положительный элемент: " + lastPositive);
+        } else {
+            System.out.println("4. В массиве нет положительных элементов.");
+        }
+        
+        
+        int positiveSum = 0;
+        for (int num : array) {
+            if (num > 0) {
+                positiveSum += num;
+            }
+        }
+        System.out.println("5. Сумма положительных элементов: " + positiveSum);
+    }
+}
